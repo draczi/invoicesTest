@@ -205,12 +205,36 @@ i {
 .customerInput,
 .customerLabel {
     border-radius: 4px;
+    margin: 10px 0;
+}
+
+.customerLabel {
+    width: 70px;
+}
+
+.customerInput {
+    margin-left: 30px;
+    min-width: 300px;
+}
+
+.customerInput.address {
+    min-width: 500px;
+}
+
+.customerInput.zipcode {
+    min-width: 40px;
+}
+
+.customerInput.name {
+    margin-top: 100px;
 }
 
 .choose_btn,
 #newCustomer,
 .newCustomer,
-#cancelCustomer{
+#newItem,
+#cancelCustomer, 
+#cancelItem {
     padding: 10px 10px;
     border: 1px solid #4a4a4a;
     background-color: #fff;
@@ -229,16 +253,38 @@ i {
     margin: 20px 0;
 }
 
+.newItem {
+    margin-top: -200px;
+}
+
 .choose_btn:hover,
 #newCustomer:hover,
+#newItem:hover,
 .newCustomer:hover,
-#cancelCustomer:hover{
+#cancelCustomer:hover, 
+#cancelItem:hover {
     background-color: #4a4a4a;
     color: #fff;
 }
 
 .newInvoice_bck {
     margin-top: 30px;
+}
+
+.date-container {
+    margin: 20px 0;
+    display: flex;
+    flex-decoration: row;
+}
+
+.date-container .date_item {
+    display: flex;
+    flex-direction: column;
+}
+
+.customerLabel.date {
+    width: 120px;
+    margin-right: 50px;
 }
 
 

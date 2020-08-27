@@ -5,7 +5,6 @@
  */
 package hu.dracz.entities;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,11 +14,10 @@ import javax.faces.bean.ManagedBean;
  *
  * @author Isi
  */
-
-@ManagedBean(name="currentDate")
-public class currentDate implements Serializable{
-    private String currentDate;
-
+@ManagedBean(name="cdate")
+public class CurrentDate {
+   private String currentDate;
+     public CurrentDate() {}
     public String getCurrentDate() {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -31,9 +29,7 @@ public class currentDate implements Serializable{
         this.currentDate = currentDate;
     }
 
-    public currentDate(String currentDate) {
-        this.currentDate = currentDate;
-    }
-    public currentDate() {}
+   
+  
     
 }

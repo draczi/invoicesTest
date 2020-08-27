@@ -58,8 +58,6 @@ public class InvoiceItems implements Serializable {
     public InvoiceItems() {
     }
     
-    
-     
     public InvoiceItems(String itemName, int quantity, int unitPrice) {
         this.itemName = itemName;
         this.quantity = quantity;
