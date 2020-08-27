@@ -1,0 +1,250 @@
+* {
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+h1 {
+    color: #4a4a4a;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.invoice_h1 {
+    margin-top: 90px
+}
+
+.container {
+    width: 1070px;
+    margin: 0 auto;
+}
+
+#invoices,
+#invoice_items {
+  margin-top: 40px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#invoice_items {
+    margin-top: 0;
+}
+
+#invoices td, #invoices th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#invoice_items td, #invoice_items th {
+  border: 1px solid #4a4a4a;
+  padding: 8px;
+  border-top: none;
+}
+
+#invoices tr:nth-child(even) {background-color: #f2f2f2;}
+
+#invoices tr:hover {background-color: #ddd;}
+
+#invoices th,
+#invoice_items th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #a4a4a4;
+  color: #fff;
+  text-align: center;
+}
+
+#invoice_items th {
+    background-color: #e7e7e7;
+    color: #4a4a4a;
+}
+
+.customer_btn {
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+}
+
+.customer_btn:hover {
+    color: cornflowerblue;
+}
+
+#invoices tbody tr td,
+#invoice_items tbody tr td {
+    text-align: center;
+}
+
+#invoice_items tbody tr td:first-child {
+    width: 450px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.details {
+     position: relative;
+}
+.icon_btn {
+    width: 60px;
+    cursor: pointer;
+    background-color: transparent;
+    border:none;
+}
+
+i {
+  position: absolute;
+  right: 40%;
+  cursor: pointer;
+}
+
+
+.container.edit {
+    width: 900px
+}
+.row.header {
+    display:flex;
+    flex-direction: row;
+    border: 1px solid #4a4a4a;
+    margin-top: 50px;
+}
+
+.row.header .customer,
+.row.header .seller {
+    display:flex;
+    flex-direction: column;
+    width: 448px;
+    padding: 15px 50px;
+}
+
+.row.header .seller {
+    border-right: 1px solid #4a4a4a;
+}
+
+.invoice_dates {
+    display:flex;
+    flex-direction: row;
+    border: 1px solid #4a4a4a;
+    border-top: none;
+}
+
+.invoice_dates .column {
+    display: flex;
+    flex: 1;
+    padding: 10px 20px;
+    border-right: 1px solid #4a4a4a;
+    
+}
+
+.invoice_dates .column .date {
+    margin-left: 20px;
+}
+
+.invoice_dates .column:last-child {
+    border-right: none;
+}
+
+.invoice_items tbody tr td {
+    width: 600px;
+    text-align: left;
+}
+
+#inv_comment {
+    margin: 10px 0;
+}
+
+.comment {
+    padding: 10px 0 10px 20px;
+    border: 1px solid #4a4a4a;
+    border-top: none;
+}
+
+.total_container {
+    display: flex;
+    align-items: stretch;
+}
+
+.total_column {
+    flex-grow: 1;
+    text-align: center;
+    border: 1px solid #4a4a4a;
+    border-top: none;
+    padding: 10px 8.5px
+}
+
+.back_btn {
+    text-decoration: none;
+    margin: 30px;
+}
+
+.back_btn:hover {
+    color: captiontext;
+}
+
+.new_inv_container {
+    margin: 40px 0 0; 
+}
+
+.newInv {
+    text-decoration: none;
+}
+
+.newInv:hover {
+    color: cornflowerblue;
+}
+
+.selectBox,
+.customerInput {
+    padding: 10px 10px;
+    border: 1px solid #4a4a4a;
+}
+
+.customerLabel {
+   margin: 15px 0;
+}
+
+.customerInput,
+.customerLabel {
+    border-radius: 4px;
+}
+
+.choose_btn,
+#newCustomer,
+.newCustomer,
+#cancelCustomer{
+    padding: 10px 10px;
+    border: 1px solid #4a4a4a;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-left: 20px;
+    cursor:pointer;
+}
+
+#newCustomer,
+#cancelCustomer{
+   
+    margin: 50px 0 20px;
+}
+
+.newCustomer {
+    margin: 20px 0;
+}
+
+.choose_btn:hover,
+#newCustomer:hover,
+.newCustomer:hover,
+#cancelCustomer:hover{
+    background-color: #4a4a4a;
+    color: #fff;
+}
+
+.newInvoice_bck {
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link href="resource/css/style.css" rel="stylesheet" type="text/css" />
+         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+       <!-- DatePicker JavaScript & CSS -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    </h:head>
+    <h:body>
+        <h1 class="invoice_h1">Új számla</h1>
+        
+        <div class="container new">
+            <h:link value = "Vissza a számlákhoz" outcome="index" styleClass="back_btn newInvoice_bck"/><br/>
+            <button id="newCustomer">Új Vásárló</button>
+            <button id="cancelCustomer">Mégsem</button>
+            <div id="newCustomerPanel" style="display:none">
+                <h:form>
+                    <h:outputLabel value="Vásárló neve" styleClass="customerLabel" /><br/>
+                    <h:inputText value="#{customers.name}" styleClass="customerInput" /><br/>
+                    <h:outputLabel value="Vásárló Címe" styleClass="customerLabel" /><br/>
+                    <h:inputText value="#{customers.address}" styleClass="customerInput" /><br/>
+                    <h:outputLabel value="Vásárló városa" styleClass="customerLabel" /><br/>
+                    <h:inputText value="#{customers.city}" styleClass="customerInput"  /><br/>
+                    <h:outputLabel value="Vásárló neve" styleClass="customerLabel" /><br/>
+                    <h:inputText value="#{customers.zipCode}" styleClass="customerInput" /><br/>
+                    <h:outputLabel value="Vásárló neve" styleClass="customerLabel" /><br/>
+                    <h:inputText value="#{customers.country}" styleClass="customerInput"  /><br/>
+                    <h:commandButton value="Mentés" styleClass="newCustomer" action="#{InvoicesController.newCustomer(customers)}" />
+                </h:form>
+            </div>
+            <h:form>
+                <h:selectOneMenu value = "#{customers.id}" styleClass="selectBox"> 
+                    <f:selectItems value="#{InvoicesController.allCustomers()}" var="customer" itemValue="#{customer.id}" itemLabel="#{customer.name}.  #{customer.city}, #{customer.address}"/>
+                </h:selectOneMenu>
+                <h:commandButton value="Kiválaszt" styleClass="choose_btn" action="#{customersController.findCustomer(customers)}"/>
+                
+            </h:form> 
+            
+            <button id="newItem">Új Tétel</button>
+            <button id="cancelItem">Mégsem</button>
+            <div id="newItemPanel" style="display:none">
+                <h:form>
+                    <h:outputLabel value="Tétel neve" styleClass="customerLabel" /><br/>
+                    <h:inputText value="#{i.itemName}" styleClass="customerInput" /><br/>
+                    <h:outputLabel value="Mennyiség" styleClass="customerLabel" /><br/>
+                    <h:inputText value="#{i.quantity}" styleClass="customerInput" /><br/>
+                    <h:outputLabel value="Egység ár" styleClass="customerLabel" /><br/>
+                    <h:inputText value="#{i.unitPrice}" styleClass="customerInput"  /><br/> 
+                    <h:commandButton value="Mentés" styleClass="newCustomer" action="#{itemsController.addItemList(i)}" />
+                </h:form>
+                  </div>
+            <h:form>
+                
+                
+            
+               
+            <h:dataTable var="il" value="#{itemsController.itemList}">
+                    <h:column>
+                        <f:facet name="header">Számla sorszáma</f:facet>
+                        <h:outputText value="#{il.items.quantity}" />
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">Számla sorszáma</f:facet>
+                        <h:outputText value="#{il.items.unitPrice}" />
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">Számla sorszáma</f:facet>
+                        <h:outputText value="#{il.items.itemName}" />
+                    </h:column>
+                </h:dataTable>
+                <h:inputText value="#{currentDate.currentDate}" styleClass="form-control datepicker" />
+                <h:commandButton value="Mentés" styleClass="newCustomer" action="#{InvoicesController.newInvoice(itemsController.itemList, currentDate.currentDate, customersController.customer)}" />
+
+             </h:form>
+      
+        </div>
+    <h:outputScript target="head">
+        $ = jQuery;
+        var date = new Date();
+        var year = date.getFullYear();
+        var years = year + 30;
+        $(document).ready(function() {
+         $(".datepicker").datepicker({
+      dateFormat: 'yy-mm-dd',
+      changeMonth: true,
+      changeYear: true,
+      yearRange: '"+year+":2090'
+   });
+           $("#cancelCustomer").hide();
+           $("#newCustomer").click(function(){
+                    $("#newCustomerPanel").show();
+                    $("#newCustomer").hide();
+                    $("#cancelCustomer").show();
+                }); 
+            $("#cancelCustomer").click(function(){
+                    $("#newCustomerPanel").hide();
+                    $("#newCustomer").show();
+                    $("#cancelCustomer").hide();
+                }); 
+                 $("#cancelItem").hide();
+           $("#newItem").click(function(){
+                    $("#newItemPanel").show();
+                    $("#newItem").hide();
+                    $("#cancelItem").show();
+                }); 
+            $("#cancelItem").click(function(){
+                    $("#newItemPanel").hide();
+                    $("#newItem").show();
+                    $("#cancelItem").hide();
+                }); 
+           
+        });
+    </h:outputScript>  
+    </h:body>
+</html>

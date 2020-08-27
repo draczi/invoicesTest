@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Számla program</title>
+        <link href="resource/css/style.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        
+    </h:head>
+    <h:body>
+        <h1>Számlák a rendszerben</h1>
+        <div class="container">
+            <div class="new_inv_container">
+                <h:link value = "Új számla készítése" outcome="newInvoice" styleClass="newInv"/> 
+            </div>
+            <h:dataTable var="p" value="#{InvoicesController.findAll()}" id="invoices" cellpadding="2" cellspacing="2">
+                <h:column>
+                    <f:facet name="header">Számla sorszáma</f:facet>
+                    <h:outputText value="#{p.id}" styleClass="outputText_tb" />
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Vásárló</f:facet>
+                    <h:form>
+                        <h:commandButton value="#{p.customer.name}" styleClass="customer_btn" action="#{InvoicesController.detail(p)}" />
+                    </h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Számla kelte</f:facet>
+                    <h:outputText value="#{p.issueDate}" styleClass="outputText_tb">
+                        <f:convertDateTime dateStyle="full" pattern="yyy.MM.dd HH:mm:ss"/>
+                    </h:outputText>
+                    </h:column>
+                <h:column>
+                    <f:facet name="header">Számla lejárata</f:facet>
+                    <h:outputText value="#{p.dueDate}" styleClass="outputText_tb">
+                        <f:convertDateTime dateStyle="full" pattern="yyy.MM.dd HH:mm:ss"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Végösszeg</f:facet>
+                    <h:outputText value="#{p.invoiceitemsCollection.stream().map(item->item.total).sum()} Ft / " />
+                    <h:outputText value="#{p.invoiceitemsCollection.stream().map(item->item.total).sum()/InvoicesController.currency()}"> <h:graphicImage  value="fal fa-eye"/>
+                        <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00 €"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <div class="details">
+                        <h:form>
+                            <h:commandButton  value="" styleClass="icon_btn" action="#{InvoicesController.detail(p)}">
+                                 <i class="fa fa-eye fa-1x icon" aria-hidden="true"></i>
+                            </h:commandButton>
+                        </h:form>
+                    </div>
+                   
+                </h:column>
+            </h:dataTable> 
+        </div>
+       
+            <h:panelGrid columns="1">
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime type="date" dateStyle="medium"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime type="date" dateStyle="full"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime type="time" dateStyle="full"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime type="date" pattern="dd/mm/yyyy"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime dateStyle="full" pattern="yyyy-mm-dd"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime dateStyle="full" pattern="yyyy.MM.dd 'at' HH:mm:ss z"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime dateStyle="full" pattern="h:mm a"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime dateStyle="long" timeZone="EST" type="both"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime locale="fr" timeStyle="long" type="both" dateStyle="full"/>
+        </h:outputText>
+
+        <h:outputText value="#{dateTimeBean.currentDate}">
+            <f:convertDateTime locale="us" timeStyle="short" type="both" dateStyle="full"/>
+        </h:outputText>
+
+    </h:panelGrid>
+    </h:body>
+</html>
+

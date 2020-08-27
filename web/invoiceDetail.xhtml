@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link href="resource/css/style.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <h1 class="invoice_h1">Számla</h1>
+        <div class="container edit">
+            <div class="row header">
+                <div class="seller">
+                    <h:outputLabel value="Eladó" style="font-weight: bold"/><br/>
+                    <h:outputText value="SzámlaProgram tulajdonosa" /><br/>
+                    <h:outputText value="Teszt utca 9" /><br/>
+                    <h:outputText value="Budapest" /><br/>
+                    <h:outputText value="1111" /><br/>
+                    <h:outputText value="#{InvoicesController.invoice.customer.country}" /><br/>
+                </div>
+                <div class="customer">
+                    <h:outputLabel value="Vevő" style="font-weight: bold"/><br/>
+                    <h:outputText value="#{InvoicesController.invoice.customer.name}" /><br/>
+                    <h:outputText value="#{InvoicesController.invoice.customer.address}" /><br/>
+                    <h:outputText value="#{InvoicesController.invoice.customer.city}" /><br/>
+                    <h:outputText value="#{InvoicesController.invoice.customer.zipCode}" /><br/>
+                    <h:outputText value="#{InvoicesController.invoice.customer.country}" /><br/>
+                </div>
+            </div>
+            <div class="invoice_dates">
+                <div class="column">
+                    <h:outputLabel value="Számla kelte:" style="font-weight: bold"/>
+                    <h:outputText value="#{InvoicesController.invoice.issueDate}" styleClass="date">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/> 
+                    </h:outputText>
+                </div>
+                <div class="column">
+                    <h:outputLabel value="Fizetési határidő:" style="font-weight: bold"/>
+                    <h:outputText value="#{InvoicesController.invoice.dueDate}" styleClass="date">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/> 
+                    </h:outputText>
+                </div>
+                <div class="column">
+                    <h:outputLabel value="Számla sorszáma:" style="font-weight: bold"/>
+                    <h:outputText value="#{InvoicesController.invoice.id}" styleClass="date" />
+                </div>
+            </div>
+            <div class="comment">
+                <h:outputLabel value="Megjegyzés:" style="font-weight: bold;"/>
+                <h:outputText value="#{InvoicesController.invoice.comment}" id="inv_comment" />
+            </div>
+            <h:dataTable var="item" value="#{InvoicesController.invoice.invoiceitemsCollection}" id="invoice_items" cellpadding="2" cellspacing="2">
+                <h:column>
+                    <f:facet name="header">Megnevezés</f:facet>
+                    <h:outputText value="#{item.itemName}" styleClass="outputText_itemName" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Mennyiség</f:facet>
+                    <h:outputText value="#{item.quantity} db" styleClass="outputText_tb" />
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Egység ár</f:facet>
+                    <h:outputText value="#{item.unitPrice}" styleClass="outputText_tb" />
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Bruttó érték</f:facet>
+                    <h:outputText value="#{item.total}" styleClass="outputText_tb" />
+                </h:column>
+            </h:dataTable>
+            <div class="total_container">
+                <h:outputLabel value="" style="font-weight: bold;flex-grow:8; text-align: center;"/>
+                <h:outputLabel value="Végösszeg:" style="font-weight: bold;border-right:none" styleClass="total_column"/>
+                <h:outputText value="#{InvoicesController.invoice.invoiceitemsCollection.stream().map(item->item.total).sum()} Ft" styleClass="total_column"/>
+            </div>
+            <div class="total_container">
+                <h:outputLabel value="" style="font-weight: bold;flex-grow:8; text-align: center;"/>
+                <h:outputLabel value="" style="font-weight: bold;border:none" styleClass="total_column"/>
+                <h:outputText value="#{InvoicesController.invoice.invoiceitemsCollection.stream().map(item->item.total).sum()/InvoicesController.currency()}" styleClass="total_column">
+                         <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00 €"/>
+                </h:outputText>
+            </div>
+            <h:link value = "Vissza a számlákhoz" outcome="index" styleClass="back_btn"/>
+        </div>
+        
+    </h:body>
+</html>
+

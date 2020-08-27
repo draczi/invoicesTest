@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://www.mnb.hu/arfolyamok.asmx?wsdl" uri="src/conf/xml-resources/web-service-references/arfolyamok/wsdl/www.mnb.hu/arfolyamok.asmx.wsdl"/>
+    <system systemId="http://www.mnb.hu/arfolyamok.asmx?wsdl=wsdl0" uri="src/conf/xml-resources/web-service-references/arfolyamok/wsdl/www.mnb.hu/arfolyamok.asmx.wsdl_wsdl0.wsdl"/>
+    <system systemId="http://www.mnb.hu/arfolyamok.asmx?xsd=xsd1" uri="src/conf/xml-resources/web-service-references/arfolyamok/wsdl/www.mnb.hu/arfolyamok.asmx.xsd_xsd1.xsd"/>
+    <system systemId="http://www.mnb.hu/arfolyamok.asmx?xsd=xsd0" uri="src/conf/xml-resources/web-service-references/arfolyamok/wsdl/www.mnb.hu/arfolyamok.asmx.xsd_xsd0.xsd"/>
+</catalog>
