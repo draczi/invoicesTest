@@ -178,7 +178,6 @@ public class InvoicesController implements Serializable {
          customerManager cm = new customerManager(customersFacade.find(c.getId()));
 
          customerList.add(cm);
-            System.out.println(customerList);
         
          
          return "newInvoice";
